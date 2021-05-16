@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+
+  app_produtos_favoritos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8082"
+    restart: always
+    ports:
+      - 8082:8082
+    env_file:
+      - .env
+    depends_on:
+      db_produtos_favoritos:
+          condition: service_healthy
+      redis_produtos_favoritos:
+          condition: service_started
+    networks:
+      - backend
+
+  db_produtos_favoritos:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: desafioll
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+
+  redis_produtos_favoritos:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
