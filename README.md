@@ -1,14 +1,13 @@
 # API Produtos favoritos de clientes
 > O projeto tem como objetivo prover features para um e-commerce para fazer a gestão de produtos favoritos de seus clientes.
 
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
-O objetivo desse projeto é fazer a gestão dos clientes de um e-commerce, bem como fazer a gestão dos produtos favoritos de seus clientes.
-
 A aplicação permite cadastrar, alterar, remover e visualizar clientes, bem como adicionar ou remover produtos em uam lista de favoritos dos clientes.
 
-![](../header.png)
+## Principais tecnologias utilizadas
+
+- **Django Rest Framework:** Framework da API
+- **PostgreSql:** Database Principal
+- **Redis:** Cache dos produtos 
 
 ## Iniciando a aplicação com Docker
 ###### Obs.1: Antes de prosseguir, crie um arquivo .env no diretorio raiz da aplicação. Vide ".env_example" 
@@ -87,11 +86,3 @@ José Humberto – josenunesti@gmail.com
 Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
 
 [https://github.com/josenunesti](https://github.com/josenunesti)
-
-
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/seunome/seuprojeto/wiki
