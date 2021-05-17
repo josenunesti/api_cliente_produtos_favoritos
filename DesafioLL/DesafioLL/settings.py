@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-on2w+w3!bme1ff*37$wrqw-rx0*ock5vgohq*$@-7#_ybfn&ow
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,8 +42,18 @@ INSTALLED_APPS = [
     'cliente_lista_produto.apps.ClienteListaProdutoConfig',
     'corsheaders',
     'rest_framework.authtoken',
-    'rest_framework_swagger'
+    'drf_yasg'
 ]
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
