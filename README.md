@@ -73,6 +73,11 @@ Com o usuário de teste criado, fique à vontade para interagir com os endpoints
 
 A seguir iremos preparar nosso ambiente de desenvolvimento, subir as dependências com docker, iniciar a aplicação e executar os testes automatizados. 
 
+Passo 1 - Subir as dependências da aplicação via docker (Postgresql e Redis)
+## Preparando o ambiente de desenvolvimento
+
+A seguir iremos preparar nosso ambiente de desenvolvimento, subir as dependências com docker, iniciar a aplicação e executar os testes automatizados. 
+
 **Passo 1** - Subindo as dependências da aplicação via docker (Postgresql e Redis)
 ```sh
 # Execute o compose file
