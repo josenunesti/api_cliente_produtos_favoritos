@@ -1,32 +1,43 @@
 # API Produtos favoritos de clientes
 > O projeto tem como objetivo prover features para um e-commerce para fazer a gestão de produtos favoritos de seus clientes.
 
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
 
-O objetivo desse projeto é fazer a gestão dos clientes de um e-commerce, bem como fazer a gestão dos produtos favoritos de seus clientes.
+A aplicação permite gerenciar clientes, bem como fornecer aos clientes a gestão de uma lista de produtos favoritos.
 
-A aplicação permite cadastrar, alterar, remover e visualizar clientes, bem como adicionar ou remover produtos em uam lista de favoritos dos clientes.
+## Features
+- [x] Cadastro de Clientes
+- [x] Adicionar produtos na lista de favoritos 
+- [x] Remover produtos da lista de favoritos
+- [x] Cadastro de usuário para utilização da API
 
-![](../header.png)
+## Tecnologias
+
+- [**Python:**](https://www.python.org/) Linguagem principal
+- [**Django Rest Framework:**](https://www.django-rest-framework.org/) Framework da API
+- [**PostgreSql:**](https://www.postgresql.org/) Database Principal
+- [**Redis:**](https://redis.io/) Cache para consultas de produtos
 
 ## Iniciando a aplicação com Docker
-###### Obs.1: Antes de prosseguir, crie um arquivo .env no diretorio raiz da aplicação. Vide ".env_example" 
-###### Obs.2: Fara facilitar o teste, foi disponibilizado no repositorio um .env pronto. =)
 
 ```sh
-git clone https://github.com/josenunesti/api_cliente_produtos_favoritos.git
+# Clone este repositório
+$ git clone https://github.com/josenunesti/api_cliente_produtos_favoritos.git
 
-cd api_cliente_produtos_favoritos/
+# Acesse o diretorio da aplicação
+$ cd api_cliente_produtos_favoritos/
 
-docker-compose -f docker-compose.prod.yml up -d
+# Suba a aplicação por meio do compose-file
+$ docker-compose -f docker-compose.prod.yml up -d
 ```
+###### Para facilitar o teste, foi disponibilizado no repositório um .env pronto. =) `Obs.: Em cenários reais, deixar o .env no repositório não é aconselhável.`
 
-## Como usar a aplicação
+### Utilizando a aplicação
 
-a) Criando usuário de teste para uso da API
+Antes de interagir com os principais endpoints da API, primeiro vamos criar um usuário para os testes:
+
+Passo 1 - Criando usuário de teste para uso da API
 ```sh
-curl --location --request POST 'http://localhost:8082/api/user/create' \
+curl --location --request POST 'http://localhost:8082/v1/user/create' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username": "user_test",
@@ -34,64 +45,85 @@ curl --location --request POST 'http://localhost:8082/api/user/create' \
     "email": "user_test@test.com"
 }'
 ```
-Resultado esperado: Status Code: 201
+Resultado esperado: `Status Code: 201`
 
-b) Obtendo o token do usuário de teste
+Passo 2 - Obtendo o token do usuário de teste
 ```sh
-curl --location --request POST 'http://localhost:8082/get_token_auth' \
+curl --location --request POST 'http://localhost:8082/v1/get_token_auth' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username": "user_test",
     "password": "user_test"
 }'
 ```
-Resultado esperado: Status Code: 200
+Resultado esperado: `Status Code: 200`
 
 Obs.: O token de acesso deverá ser passado no header de todas as requisições da API. Exemplo:
 ```sh
-curl --location --request GET 'http://localhost:8082/api/client' \
+curl --location --request GET 'http://localhost:8082/v1/client' \
 --header 'Authorization: Token fa4060a2666c0605ec35f002a83aa4e2fdf353c4'
 ```
 
-## Executando o código
+Com o usuário de teste criado, fique à vontade para interagir com os endpoints da API, consulte a documentação:
 
-a) Subir as dependências da aplicação via docker (Postgresql e redis)
+- `Swagger:` http://localhost:8082/swagger
+- `ReDoc:` http://localhost:8082/redoc
+
+## Preparando o ambiente de desenvolvimento
+
+A seguir iremos preparar nosso ambiente de desenvolvimento, subir as dependências com docker, iniciar a aplicação e executar os testes automatizados. 
+
+Passo 1 - Subir as dependências da aplicação via docker (Postgresql e Redis)
 ```sh
-docker-compose -f docker-compose.dev.yml up -d
+# Execute o compose file
+$ docker-compose -f docker-compose.dev.yml up -d
 ```
 
-b) Iniciar a aplicação na maquina local
+Passo 2 - Iniciar a aplicação na máquina local
 ```sh
-cd api_cliente_produtos_favoritos/
-CRIAR VIRTUAL ENV E ATIVA-LO
-pip install -r requirements.txt
-cd DesafioLL/
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8082
+# Acesse o diretorio
+$ cd api_cliente_produtos_favoritos/
+
+# Instale o virtualenv
+$ pip install virtualenv
+
+# Crie um novo virtualenv
+$ virtualenv venv
+
+# (Windows) Ative a venv
+$ venv\Scripts\activate
+
+# (Linux ou MacOS) Ative a venv
+$ source venv/bin/activate
+
+# Instale as dependências do projeto
+$ pip install -r requirements.txt
+
+# Acesse o diretorio
+$ cd DesafioLL/
+
+# Execute as migrações para criar a estrutura de banco de dados
+$ python manage.py migrate
+
+# Inicie a aplicação
+$ python manage.py runserver 0.0.0.0:8082
 ```
 
-## Executando os testes automatizados
-###### Obs.: Garanta que os passos acima foram realmente exeuctados.
+Passo 3 - Executar os testes automatizados
 
 ```sh
-cd api_cliente_produtos_favoritos/
-cd DesafioLL/
-pytest
+# Acesse o diretorio
+$ cd api_cliente_produtos_favoritos/
+$ cd DesafioLL/
+
+# Execute os testes
+$ pytest
 ```
 
 ## Meta
 
 José Humberto – josenunesti@gmail.com
 
-Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
+Distribuído sob a licença GNU General Public License v3. Veja `LICENSE` para mais informações.
 
 [https://github.com/josenunesti](https://github.com/josenunesti)
-
-
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/seunome/seuprojeto/wiki
