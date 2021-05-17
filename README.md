@@ -10,6 +10,7 @@ A aplicação permite gerenciar clientes, bem como fornecer aos clientes a gest�
 - [x] Remover produtos da lista de favoritos
 - [x] Cadastro de usuário para utilização da API
 
+
 ## Tecnologias
 
 - [**Python:**](https://www.python.org/) Linguagem principal
