@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^v1/client/(?P<id_client>[0-9a-f-]+)$', client_detail),
     url(r'^v1/client/product_favorite$', client_favorite),
     url(r'^v1/client/product_favorite/(?P<id_client>[0-9a-f-]+)$', client_favorite),
+    url(r'^v1/client/product_favorite/(?P<id_client>[0-9a-f-]+)/$', client_favorite),
     url(r'^v1/user/create$', CreateUser.as_view()),
     url(r'^v1/get_token_auth$', views.obtain_auth_token)
 ]
