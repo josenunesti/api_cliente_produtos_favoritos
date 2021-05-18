@@ -74,13 +74,14 @@ Com o usuário de teste criado, fique à vontade para interagir com os endpoints
 
 A seguir iremos preparar nosso ambiente de desenvolvimento, subir as dependências com docker, iniciar a aplicação e executar os testes automatizados. 
 
-Passo 1 - Subir as dependências da aplicação via docker (Postgresql e Redis)
-## Preparando o ambiente de desenvolvimento
-
-A seguir iremos preparar nosso ambiente de desenvolvimento, subir as dependências com docker, iniciar a aplicação e executar os testes automatizados. 
-
 **Passo 1** - Subindo as dependências da aplicação via docker (Postgresql e Redis)
 ```sh
+# Clone este repositório
+$ git clone https://github.com/josenunesti/api_cliente_produtos_favoritos.git
+
+# Acesse o diretorio da aplicação
+$ cd api_cliente_produtos_favoritos/
+
 # Execute o compose file
 $ docker-compose -f docker-compose.dev.yml up -d
 ```
@@ -129,7 +130,7 @@ $ pytest
 ## Trabalhos futuros
 - Adicionar a arquitetura um `load balancing` e `proxy reverso` [(Nginx)](https://www.nginx.com/) para auxiliar a escalabilidade da API.
 - Estudar a viabilidade de implementar o pattern [Circuit Breaker](https://martinfowler.com/bliki/CircuitBreaker.html) para aumentar a robustez da aplicação em casos de falha da API externa de produtos.
-
+- Fazer o uso das [ViewSets](https://www.django-rest-framework.org/api-guide/viewsets/) do Django para melhorar a legibilidade do arquivo view.py.  
 ## Meta
 
 José Humberto – josenunesti@gmail.com
