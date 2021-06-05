@@ -135,6 +135,7 @@ $ pytest
 
 José Humberto – josenunesti@gmail.com
 Yohan Rorigues - 
+Fagner
 
 Distribuído sob a licença GNU General Public License v3. Veja `LICENSE` para mais informações.
 
